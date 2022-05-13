@@ -1,0 +1,144 @@
+[debug] > Exec(early(addDefaultCommands), None, None)
+[debug] > Exec(addDefaultCommands, None, None)
+[debug] > Exec(early(initialize), None, None)
+[debug] > Exec(initialize, None, None)
+[debug] > Exec(early(addPluginSbtFile="""C:\Users\Marinela\AppData\Local\Temp\idea2.sbt"""), None, None)
+[debug] > Exec(addPluginSbtFile="""C:\Users\Marinela\AppData\Local\Temp\idea2.sbt""", None, None)
+[debug] > Exec(boot, None, None)
+[debug] > Exec(writeSbtVersion, None, None)
+[debug] > Exec(reload, None, None)
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(onFailure loadFailed, None, None)
+[debug] > Exec(loadp, None, None)
+[info] welcome to sbt 1.6.2 (Oracle Corporation Java 11.0.12)
+[debug]       Load.loadUnit: plugins took 66.6447ms
+[debug]       Load.loadUnit: defsScala took 0.3539ms
+[debug] [Loading] Scanning directory C:\Users\Marinela\.sbt\1.0\plugins
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\Marinela\.sbt\1.0\plugins, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 15.7931 ms
+[debug]           Load.resolveProject(global-plugins) took 40.9228ms
+[debug]         Load.loadTransitive: finalizeProject(Project(id global-plugins, base: C:\Users\Marinela\.sbt\1.0\plugins, plugins: List(<none>))) took 78.7552ms
+[debug] [Loading] Done in C:\Users\Marinela\.sbt\1.0\plugins, returning: (global-plugins)
+[debug]       Load.loadUnit: loadedProjectsRaw took 100.0205ms
+[debug]       Load.loadUnit: cleanEvalClasses took 0.3212ms
+[debug]     Load.loadUnit(file:/C:/Users/Marinela/.sbt/1.0/plugins/, ...) took 175.7733ms
+[debug]   Load.apply: load took 312.6532ms
+[debug]   Load.apply: resolveProjects took 4.9837ms
+[debug]   Load.apply: finalTransforms took 48.6034ms
+[debug]   Load.apply: config.delegates took 7.6003ms
+[debug]   Load.apply: Def.make(settings)... took 377.5857ms
+[debug]   Load.apply: structureIndex took 106.7206ms
+[debug]   Load.apply: mkStreams took 1.8355ms
+[info] loading global plugins from C:\Users\Marinela\.sbt\1.0\plugins
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug] Load.defaultLoad until apply took 2322.223ms
+[debug]           Load.loadUnit: plugins took 25.3768ms
+[debug]           Load.loadUnit: defsScala took 0.0047ms
+[debug] [Loading] Scanning directory C:\Users\Marinela\Downloads\followers\message-broker\project
+[debug]             Load.loadUnit: mkEval took 6.5667ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\Marinela\Downloads\followers\message-broker\project, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 2.2197 ms
+[info] loading settings for project message-broker-build from idea2.sbt ...
+[debug]               Load.resolveProject(message-broker-build) took 4.9022ms
+[debug]             Load.loadTransitive: finalizeProject(Project(id message-broker-build, base: C:\Users\Marinela\Downloads\followers\message-broker\project, plugins: List(<none>))) took 7.7542ms
+[debug] [Loading] Done in C:\Users\Marinela\Downloads\followers\message-broker\project, returning: (message-broker-build)
+[debug]           Load.loadUnit: loadedProjectsRaw took 117.0989ms
+[debug]           Load.loadUnit: cleanEvalClasses took 5.5137ms
+[debug]         Load.loadUnit(file:/C:/Users/Marinela/Downloads/followers/message-broker/project/, ...) took 149.1789ms
+[debug]       Load.apply: load took 151.2811ms
+[debug]       Load.apply: resolveProjects took 0.1537ms
+[debug]       Load.apply: finalTransforms took 13.379ms
+[debug]       Load.apply: config.delegates took 0.6277ms
+[debug]       Load.apply: Def.make(settings)... took 81.4375ms
+[debug]       Load.apply: structureIndex took 26.6438ms
+[debug]       Load.apply: mkStreams took 0.0026ms
+[info] loading project definition from C:\Users\Marinela\Downloads\followers\message-broker\project
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[debug]     Load.loadUnit: plugins took 1540.3309ms
+[debug]     Load.loadUnit: defsScala took 0.0022ms
+[debug] [Loading] Scanning directory C:\Users\Marinela\Downloads\followers\message-broker
+[debug]       Load.loadUnit: mkEval took 0.1773ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\Marinela\Downloads\followers\message-broker, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.StructurePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.IdeaShellPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.StructurePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.IdeaShellPlugin)))
+[debug] Clause(And(Set(Atom(sbt.plugins.CorePlugin), Atom(sbt.plugins.JvmPlugin))),Set(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.SemanticdbPlugin,org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin,sbt.plugins.JUnitXmlReportPlugin,org.jetbrains.sbt.IdeaShellPlugin,org.jetbrains.sbt.StructurePlugin,sbt.plugins.MiniDependencyTreePlugin)
+[debug] Plugins.deducer#function took 2.2466 ms
+[info] loading settings for project message-broker from build.sbt ...
+[debug]         Load.resolveProject(message-broker) took 23.5004ms
+[debug]       Load.loadTransitive: finalizeProject(Project(id message-broker, base: C:\Users\Marinela\Downloads\followers\message-broker, plugins: List(<none>))) took 26.8616ms
+[debug] [Loading] Done in C:\Users\Marinela\Downloads\followers\message-broker, returning: (message-broker)
+[debug]     Load.loadUnit: loadedProjectsRaw took 2428.5902ms
+[debug]     Load.loadUnit: cleanEvalClasses took 10.2153ms
+[debug]   Load.loadUnit(file:/C:/Users/Marinela/Downloads/followers/message-broker/, ...) took 3979.7143ms
+[debug] Load.apply: load took 3981.4048ms
+[debug] Load.apply: resolveProjects took 0.0765ms
+[debug] Load.apply: finalTransforms took 25.9395ms
+[debug] Load.apply: config.delegates took 0.3069ms
+[debug] Load.apply: Def.make(settings)... took 61.8495ms
+[debug] Load.apply: structureIndex took 26.2247ms
+[debug] Load.apply: mkStreams took 0.003ms
+[info] set current project to message-broker (in build file:/C:/Users/Marinela/Downloads/followers/message-broker/)
+[debug] > Exec(sbtPopOnFailure, None, None)
+[debug] > Exec(resumeFromFailure, None, None)
+[debug] > Exec(notifyUsersAboutShell, None, None)
+[debug] > Exec(iflast shell, None, None)
+[debug] > Exec(; set ideaPort in Global := 50575 ; idea-shell, None, None)
+[debug] > Exec(set ideaPort in Global := 50575, None, None)
+[info] Defining Global / ideaPort
+[info] The new value will be used by Compile / compile, Test / compile
+[debug] Defining 
+[debug] 	Global / ideaPort
+[debug] 
+[debug] The new value will be used by 
+[debug] 	Compile / compile
+[debug] 	Test / compile
+[info] Reapplying settings...
+[info] set current project to message-broker (in build file:/C:/Users/Marinela/Downloads/followers/message-broker/)
+[debug] > Exec(idea-shell, None, None)

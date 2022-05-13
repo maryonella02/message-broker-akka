@@ -1,10 +1,61 @@
 [debug] Created transactional ClassFileManager with tempDir = C:\Users\Marinela\Downloads\followers\message-broker\target\scala-2.13\classes.bak
 [debug] About to delete class files:
-[debug] We backup class files:
-[debug] Registering generated classes:
+[debug] 	PrintMyActorRefActor.class
 [debug] 	MessageBrokerApp.class
+[debug] 	StartStopActor1$$anonfun$onSignal$1.class
+[debug] 	StartStopActor1$.class
+[debug] 	ActorHierarchyExperiments$delayedInit$body.class
+[debug] 	Main.class
+[debug] 	SupervisedActor$$anonfun$onSignal$1.class
+[debug] 	ActorHierarchyExperiments$.class
+[debug] 	SupervisedActor$.class
+[debug] 	StartStopActor2.class
+[debug] 	MainSupervisor.class
+[debug] 	ActorHierarchyExperiments.class
+[debug] 	PrintMyActorRefActor$.class
+[debug] 	Main$.class
+[debug] 	MainSupervisor$$anonfun$onSignal$1.class
+[debug] 	MainSupervisor$.class
+[debug] 	StartStopActor1.class
+[debug] 	SupervisingActor.class
+[debug] 	SupervisingActor$.class
+[debug] 	MessageBrokerApp$.class
+[debug] 	StartStopActor2$$anonfun$onSignal$1.class
+[debug] 	SupervisedActor.class
+[debug] 	StartStopActor2$.class
+[debug] We backup class files:
+[debug] 	PrintMyActorRefActor.class
+[debug] 	MessageBrokerApp.class
+[debug] 	StartStopActor1$$anonfun$onSignal$1.class
+[debug] 	StartStopActor1$.class
+[debug] 	ActorHierarchyExperiments$delayedInit$body.class
+[debug] 	Main.class
+[debug] 	SupervisedActor$$anonfun$onSignal$1.class
+[debug] 	ActorHierarchyExperiments$.class
+[debug] 	SupervisedActor$.class
+[debug] 	StartStopActor2.class
+[debug] 	MainSupervisor.class
+[debug] 	ActorHierarchyExperiments.class
+[debug] 	PrintMyActorRefActor$.class
+[debug] 	Main$.class
+[debug] 	MainSupervisor$$anonfun$onSignal$1.class
+[debug] 	MainSupervisor$.class
+[debug] 	StartStopActor1.class
+[debug] 	SupervisingActor.class
+[debug] 	SupervisingActor$.class
+[debug] 	MessageBrokerApp$.class
+[debug] 	StartStopActor2$$anonfun$onSignal$1.class
+[debug] 	SupervisedActor.class
+[debug] 	StartStopActor2$.class
+[debug] Registering generated classes:
+[debug] 	Server.class
+[debug] 	MessageBrokerApp.class
+[debug] 	SimplisticHandler$$anonfun$receive$1.class
+[debug] 	SimplisticHandler.class
+[debug] 	DemoActor.class
 [debug] 	MainSupervisor.class
 [debug] 	MainSupervisor$$anonfun$onSignal$1.class
 [debug] 	MainSupervisor$.class
+[debug] 	Server$$anonfun$receive$1.class
 [debug] 	MessageBrokerApp$.class
 [debug] Removing the temporary directory used for backing up class files: C:\Users\Marinela\Downloads\followers\message-broker\target\scala-2.13\classes.bak
