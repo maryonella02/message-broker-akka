@@ -1,0 +1,57 @@
+[debug] [zinc] IncrementalCompile -----------
+[debug] IncrementalCompile.incrementalCompile
+[debug] previous = Stamps for: 18 products, 7 sources, 2 libraries
+[debug] current source = Set(${BASE}/src/main/scala/com/example/MessageBrokerApp.scala, ${BASE}/src/main/scala/com/example/ActorHierarchyExperiments.scala, ${BASE}/src/main/scala/com/example/StartStopActor1.scala, ${BASE}/src/main/scala/com/example/SupervisingActor.scala, ${BASE}/src/main/scala/com/example/SupervisedActor.scala, ${BASE}/src/main/scala/com/example/MainSupervisor.scala, ${BASE}/src/main/scala/com/example/StartStopActor2.scala, ${BASE}/src/main/scala/com/example/Main.scala, ${BASE}/src/main/scala/com/example/PrintMyActorRefActor.scala)
+[debug] > initialChanges = InitialChanges(Changes(added = Set(${BASE}/src/main/scala/com/example/MainSupervisor.scala, ${BASE}/src/main/scala/com/example/MessageBrokerApp.scala), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())
+[debug] 
+[debug] Initial source changes:
+[debug] 	removed: Set()
+[debug] 	added: Set(${BASE}/src/main/scala/com/example/MainSupervisor.scala, ${BASE}/src/main/scala/com/example/MessageBrokerApp.scala)
+[debug] 	modified: Set()
+[debug] Invalidated products: Set()
+[debug] External API changes: API Changes: Set()
+[debug] Modified binary dependencies: Set()
+[debug] Initial directly invalidated classes: Set()
+[debug] Sources indirectly invalidated by:
+[debug] 	product: Set()
+[debug] 	binary dep: Set()
+[debug] 	external source: Set()
+[debug] All initially invalidated classes: Set()
+[debug] All initially invalidated sources:Set(${BASE}/src/main/scala/com/example/MainSupervisor.scala, ${BASE}/src/main/scala/com/example/MessageBrokerApp.scala)
+[debug] Initial set of included nodes: 
+[debug] compilation cycle 1
+[info] compiling 2 Scala sources to C:\Users\Marinela\Downloads\followers\message-broker\target\scala-2.13\classes ...
+[debug] Getting org.scala-sbt:compiler-bridge_2.13:1.6.0:compile for Scala 2.13.8
+[debug] [zinc] Running cached compiler 6a9be78e for Scala compiler version 2.13.8
+[debug] [zinc] The Scala compiler is invoked with:
+[debug] 	-bootclasspath
+[debug] 	C:\Users\Marinela\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.8\scala-library-2.13.8.jar
+[debug] 	-classpath
+[debug] 	C:\Users\Marinela\Downloads\followers\message-broker\target\scala-2.13\classes;C:\Users\Marinela\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor-typed_2.13\2.6.19\akka-actor-typed_2.13-2.6.19.jar;C:\Users\Marinela\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor_2.13\2.6.19\akka-actor_2.13-2.6.19.jar;C:\Users\Marinela\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-slf4j_2.13\2.6.19\akka-slf4j_2.13-2.6.19.jar;C:\Users\Marinela\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\Marinela\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\typesafe\config\1.4.2\config-1.4.2.jar;C:\Users\Marinela\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-java8-compat_2.13\1.0.0\scala-java8-compat_2.13-1.0.0.jar
+[debug] Invalidating (transitively) by inheritance from com.example.MainSupervisor...
+[debug] Initial set of included nodes: com.example.MainSupervisor
+[debug] Invalidated by transitive inheritance dependency: Set(com.example.MainSupervisor)
+[debug] The following modified names cause invalidation of com.example.MessageBrokerApp: [UsedName(MainSupervisor,[Default]), UsedName(apply,[Default])]
+[debug] Change NamesChange(com.example.MainSupervisor,ModifiedNames(changes = UsedName(onSignal,[Default]), UsedName(onMessage,[Default]), UsedName(getClass,[Default]), UsedName(!=,[Default]), UsedName(toString,[Default]), UsedName(receiveSignal,[Default]), UsedName(receive,[Default]), UsedName(clone,[Default]), UsedName(MainSupervisor,[Default]), UsedName(_tag,[Default]), UsedName(isInstanceOf,[Default]), UsedName(##,[Default]), UsedName(context,[Default]), UsedName(narrow,[Default]), UsedName(notify,[Default]), UsedName(ne,[Default]), UsedName(unsafeCast,[Default]), UsedName(wait,[Default]), UsedName(hashCode,[Default]), UsedName(com;example;MainSupervisor;init;,[Default]), UsedName(equals,[Default]), UsedName(asInstanceOf,[Default]), UsedName(finalize,[Default]), UsedName(apply,[Default]), UsedName(notifyAll,[Default]), UsedName(==,[Default]), UsedName(synchronized,[Default]), UsedName(eq,[Default]))) invalidates 2 classes due to The com.example.MainSupervisor has the following regular definitions changed:
+[debug] 	UsedName(onSignal,[Default]), UsedName(onMessage,[Default]), UsedName(getClass,[Default]), UsedName(!=,[Default]), UsedName(toString,[Default]), UsedName(receiveSignal,[Default]), UsedName(receive,[Default]), UsedName(clone,[Default]), UsedName(MainSupervisor,[Default]), UsedName(_tag,[Default]), UsedName(isInstanceOf,[Default]), UsedName(##,[Default]), UsedName(context,[Default]), UsedName(narrow,[Default]), UsedName(notify,[Default]), UsedName(ne,[Default]), UsedName(unsafeCast,[Default]), UsedName(wait,[Default]), UsedName(hashCode,[Default]), UsedName(com;example;MainSupervisor;init;,[Default]), UsedName(equals,[Default]), UsedName(asInstanceOf,[Default]), UsedName(finalize,[Default]), UsedName(apply,[Default]), UsedName(notifyAll,[Default]), UsedName(==,[Default]), UsedName(synchronized,[Default]), UsedName(eq,[Default]).
+[debug]   > by transitive inheritance: Set(com.example.MainSupervisor)
+[debug]   > 
+[debug]   > by member reference: Set(com.example.MessageBrokerApp)
+[debug]         
+[debug] Invalidating (transitively) by inheritance from com.example.MessageBrokerApp...
+[debug] Initial set of included nodes: com.example.MessageBrokerApp
+[debug] Invalidated by transitive inheritance dependency: Set(com.example.MessageBrokerApp)
+[debug] Change NamesChange(com.example.MessageBrokerApp,ModifiedNames(changes = UsedName(getClass,[Default]), UsedName(!=,[Default]), UsedName(toString,[Default]), UsedName(clone,[Default]), UsedName(isInstanceOf,[Default]), UsedName(##,[Default]), UsedName(notify,[Default]), UsedName(ne,[Default]), UsedName(main,[Default]), UsedName(wait,[Default]), UsedName(hashCode,[Default]), UsedName(MessageBrokerApp,[Default]), UsedName(equals,[Default]), UsedName(asInstanceOf,[Default]), UsedName(finalize,[Default]), UsedName(notifyAll,[Default]), UsedName(==,[Default]), UsedName(synchronized,[Default]), UsedName(eq,[Default]))) invalidates 1 classes due to The com.example.MessageBrokerApp has the following regular definitions changed:
+[debug] 	UsedName(getClass,[Default]), UsedName(!=,[Default]), UsedName(toString,[Default]), UsedName(clone,[Default]), UsedName(isInstanceOf,[Default]), UsedName(##,[Default]), UsedName(notify,[Default]), UsedName(ne,[Default]), UsedName(main,[Default]), UsedName(wait,[Default]), UsedName(hashCode,[Default]), UsedName(MessageBrokerApp,[Default]), UsedName(equals,[Default]), UsedName(asInstanceOf,[Default]), UsedName(finalize,[Default]), UsedName(notifyAll,[Default]), UsedName(==,[Default]), UsedName(synchronized,[Default]), UsedName(eq,[Default]).
+[debug]   > by transitive inheritance: Set(com.example.MessageBrokerApp)
+[debug]   > 
+[debug]   > 
+[debug]         
+[debug] New invalidations:
+[debug] Initial set of included nodes: 
+[debug] Previously invalidated, but (transitively) depend on new invalidations:
+[debug] Final step, transitive dependencies:
+[debug] 	Set()
+[debug] No classes were invalidated.
+[debug] Scala compilation took 0.3679288 s
+[info] done compiling

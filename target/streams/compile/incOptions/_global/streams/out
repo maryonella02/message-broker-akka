@@ -1,0 +1,10 @@
+[debug] Created transactional ClassFileManager with tempDir = C:\Users\Marinela\Downloads\followers\message-broker\target\scala-2.13\classes.bak
+[debug] About to delete class files:
+[debug] We backup class files:
+[debug] Registering generated classes:
+[debug] 	MessageBrokerApp.class
+[debug] 	MainSupervisor.class
+[debug] 	MainSupervisor$$anonfun$onSignal$1.class
+[debug] 	MainSupervisor$.class
+[debug] 	MessageBrokerApp$.class
+[debug] Removing the temporary directory used for backing up class files: C:\Users\Marinela\Downloads\followers\message-broker\target\scala-2.13\classes.bak

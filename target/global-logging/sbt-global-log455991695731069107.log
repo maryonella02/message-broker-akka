@@ -1,0 +1,26 @@
+[debug] > Exec(compile, None, None)
+[debug] Evaluating tasks: Compile / compile
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 2 Scala sources to C:\Users\Marinela\Downloads\followers\message-broker\target\scala-2.13\classes ...
+[error] C:\Users\Marinela\Downloads\followers\message-broker\src\main\scala\com\example\PrintMyActorRefActor.scala:4:16: not found: type Behavior
+[error]   def apply(): Behavior[String] =
+[error]                ^
+[error] C:\Users\Marinela\Downloads\followers\message-broker\src\main\scala\com\example\PrintMyActorRefActor.scala:8:67: not found: type AbstractBehavior
+[error] class PrintMyActorRefActor(context: ActorContext[String]) extends AbstractBehavior[String](context) {
+[error]                                                                   ^
+[error] C:\Users\Marinela\Downloads\followers\message-broker\src\main\scala\com\example\PrintMyActorRefActor.scala:8:37: not found: type ActorContext
+[error] class PrintMyActorRefActor(context: ActorContext[String]) extends AbstractBehavior[String](context) {
+[error]                                     ^
+[error] C:\Users\Marinela\Downloads\followers\message-broker\src\main\scala\com\example\PrintMyActorRefActor.scala:5:5: not found: value Behaviors
+[error]     Behaviors.setup(context => new PrintMyActorRefActor(context))
+[error]     ^
+[error] C:\Users\Marinela\Downloads\followers\message-broker\src\main\scala\com\example\PrintMyActorRefActor.scala:8:92: no arguments allowed for nullary constructor Object: (): Object
+[error] class PrintMyActorRefActor(context: ActorContext[String]) extends AbstractBehavior[String](context) {
+[error]                                                                                            ^
+[error] C:\Users\Marinela\Downloads\followers\message-broker\src\main\scala\com\example\PrintMyActorRefActor.scala:10:40: not found: type Behavior
+[error]   override def onMessage(msg: String): Behavior[String] =
+[error]                                        ^
+[error] 6 errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 2 s, completed May 11, 2022, 10:06:48 PM
+[debug] > Exec(idea-shell, None, None)
