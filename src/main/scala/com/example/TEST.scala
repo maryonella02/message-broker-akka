@@ -9,38 +9,53 @@ import akka.util.ByteString
 import com.example.Server.BindAddress
 
 class Server extends Actor {
-  implicit val system = context.system
+  implicit val system: ActorSystem = context.system
+  val prefix = "/"
 
-  def receive = {
+  def receive: Receive = {
     case BindAddress(a, p) =>
       IO(Tcp) ! Bind(self, localAddress = new InetSocketAddress(a, p))
       println(s"server running on ip $a with port $p")
     case Connected(_, _) =>
       println(sender())
       sender() ! Tcp.Register(context.actorOf(Props[Handler]))
+      sender() ! Write(ByteString(s"Type " + prefix + "help for a list of commands." +
+        "\nType " + prefix + "quit to exit."))
     case Bound(a) => println(a.getAddress)
   }
 }
 
 class Handler extends Actor {
-  def receive = {
-    case Received(x) => println(x.decodeString(Charset.defaultCharset()))
-      sender() ! Write(x)
-      if (x.startsWith("CONNECTION-PUBLISHER")) {
+
+
+  def receive: Receive = {
+    case Received(x) => print(x)
+
+      if (x.startsWith("/publish")) {
         acceptNewPublisher(sender())
       }
       else if (x.startsWith("CONNECTION-SUBSCRIBER")) {
-        acceptNewSubscriber
+        acceptNewSubscriber()
+      }
+      else if(x.startsWith("topic")){
+        val topic = x.utf8String
+        sender() ! Write(ByteString(s"All further messages will now be published to the \"" + topic + "\" topic." +
+          "\nType /quit to exit."))
       }
     case x: ConnectionClosed => println(s"Connection Closed with ${sender()}")
+      context stop self
   }
 
-  def acceptNewPublisher(sender: ActorRef) = {
-    sender ! Write(ByteString(s"Enter the name of the topic that you would like to create and publish to: "))
+  def acceptNewPublisher(sender: ActorRef): Unit = {
+    sender ! Write(ByteString(s"\nEnter the name of the topic that you would like to create and publish to: "))
   }
 
-  def acceptNewSubscriber = {
+  def acceptNewSubscriber(): Unit = {
 
+  }
+
+  def print(x: ByteString): Unit = {
+    println(x.decodeString(Charset.defaultCharset()))
   }
 }
 
