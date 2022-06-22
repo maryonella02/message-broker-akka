@@ -9,6 +9,7 @@ import akka.pattern.ask
 import akka.util.{ByteString, Timeout}
 import com.example.Server.{AddPublishers, AddSubscribers, BindAddress, DeletePublishers, DeleteSubscribers, GetPublishers, GetSubscribers}
 
+import scala.collection.mutable.ListBuffer
 import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
@@ -40,7 +41,7 @@ class Server extends Actor {
     case DeleteSubscribers(a) =>
       removeSubscriber(a, Subscribers)
     case GetPublishers =>
-    sender() ! Publishers
+      sender() ! Publishers
     case GetSubscribers =>
       sender() ! Subscribers
     case _ =>
@@ -57,7 +58,10 @@ class Handler extends Actor {
   var InternalSubscribers: List[Subscriber] = List.empty[Subscriber]
 
   val prefix = "/"
-
+//  def receiveMessages: Receive ={
+//    case Received(x) => print(x)
+//
+//  }
   def receive: Receive = {
     case Received(x) => print(x)
       if (x.startsWith("/publish")) {
@@ -68,9 +72,9 @@ class Handler extends Actor {
       }
       else if (x.startsWith("topic")) {
         acceptNewPublisher(sender, x)
-
+//        receiveMessages
       }
-      if (!x.startsWith(prefix)) {
+      else if (!x.startsWith(prefix)) {
         sender ! Write(ByteString(s"Type " + prefix + "help for a list of commands."))
       }
       else if (x.startsWith("/help")) {
@@ -90,24 +94,42 @@ class Handler extends Actor {
 
   def handlePublisher(publisher: Publisher): Unit = {
     context.parent ! AddPublishers(publisher)
+    for(sub <- getSubscribers){
+      if(sub.isSubscribedToTopic(publisher.getTopic)){
+        sub.getActorRef ! Write(ByteString(s"\n Shit is getting real" + sub.getSubscribedTopics))
+      }
+    }
+  }
+
+  def getPublishers: List[Publisher] = {
     implicit val timeout: Timeout = Timeout(5 seconds)
     val future = context.parent ? GetPublishers
-    InternalPublishers = Await.result(future, timeout.duration).asInstanceOf[List[Publisher]]
-    println("After future " + InternalPublishers)
-    //to add sending to subscribers
+    Await.result(future, timeout.duration).asInstanceOf[List[Publisher]]
+  }
+  def getSubscribers: List[Subscriber] = {
+    implicit val timeout: Timeout = Timeout(5 seconds)
+    val future = context.parent ? GetSubscribers
+    Await.result(future, timeout.duration).asInstanceOf[List[Subscriber]]
   }
 
   def handleSubscriber(sender: ActorRef, x: ByteString): Unit = {
+    val subscriber = new Subscriber(sender)
     val cmd = x.utf8String.split(" ", 2)
 
-    if (x.length < 9) {
+    if (x.utf8String.length < 11) {
       sender ! Write(ByteString(s"\n That command requires an argument."))
     }
-    if (!getAvailableTopics.contains(cmd.tail)) {
+    else if (!getAvailableTopics.contains(cmd(1))) {
       sender ! Write(ByteString(s"\n That is not an available topic to subscribe to." +
         "\nType " + prefix + "alltopics to see a list of available topics to subscribe to."))
     }
-    //implement already subscribed
+    else if (subscriber.isSubscribedToTopic(cmd(1))) {
+      context.parent ! AddSubscribers(subscriber)
+    }
+    else {
+      subscriber.subscribeToTopic(cmd(1))
+      sender ! Write(ByteString(s"\n You have subscribed to topic \"" + cmd(1) + "\""))
+    }
   }
 
   def acceptNewPublisher(sender: ActorRef, x: ByteString): Unit = {
@@ -119,8 +141,10 @@ class Handler extends Actor {
     handlePublisher(new Publisher(sender, topic))
   }
 
-  def getAvailableTopics: List[String] = {
-    val topics: List[String] = List()
+  def getAvailableTopics: ListBuffer[String] = {
+    val topics: ListBuffer[String] = ListBuffer()
+    getPublishers.foreach(topics += _.getTopic)
+    println(topics.toList)
     topics
   }
 
@@ -129,17 +153,21 @@ class Handler extends Actor {
   }
 }
 object Handler {
-  //final case class AddPublisher(publisher: Publisher)
- // case class SetProducers(x: List[Publisher])
 }
 
 object Server {
   case class BindAddress(addr: String, port: Int)
+
   case class AddPublishers(a: Publisher)
+
   case class AddSubscribers(a: Subscriber)
+
   case class DeletePublishers(a: Publisher)
+
   case class DeleteSubscribers(a: Subscriber)
+
   case object GetPublishers
+
   case object GetSubscribers
 }
 
