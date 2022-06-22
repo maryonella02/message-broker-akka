@@ -82,7 +82,6 @@ class Handler extends Actor {
       }
       else if (x.startsWith("/quit")) {
         println(s"Connection Closed with ${sender()}")
-        context stop self
       }
     case _: ConnectionClosed =>
       println(s"Connection Closed with ${sender()}")
@@ -141,11 +140,17 @@ class Handler extends Actor {
   def acceptNewPublisher(sender: ActorRef, x: ByteString): Unit = {
     var topic = x.utf8String
     topic = topic.substring(topic.lastIndexOf(" ") + 1)
-    Topic = topic
-    sender ! Write(ByteString(s"All further messages will now be published to the \"" + topic + "\" topic." +
-      "\nType /start to begin publishing." +
-      "\nType /quit to exit."))
-    handlePublisher(new Publisher(sender, topic))
+    if (getAvailableTopics.contains(topic)) {
+      sender ! Write(ByteString(s"That topic already exists. Please choose a different topic: "))
+    }
+    else {
+      Topic = topic
+      sender ! Write(ByteString(s"All further messages will now be published to the \"" + topic + "\" topic." +
+        "\nType /start to begin publishing." +
+        "\nType /quit to exit."))
+      handlePublisher(new Publisher(sender, topic))
+    }
+
   }
 
   def getAvailableTopics: ListBuffer[String] = {
@@ -159,6 +164,7 @@ class Handler extends Actor {
     println(x.decodeString(Charset.defaultCharset()))
   }
 }
+
 object Handler {
 }
 
