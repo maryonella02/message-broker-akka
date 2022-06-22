@@ -53,15 +53,9 @@ class Server extends Actor {
 }
 
 class Handler extends Actor {
-
-  var InternalPublishers: List[Publisher] = List.empty[Publisher]
-  var InternalSubscribers: List[Subscriber] = List.empty[Subscriber]
-
   val prefix = "/"
-//  def receiveMessages: Receive ={
-//    case Received(x) => print(x)
-//
-//  }
+  var Topic = ""
+
   def receive: Receive = {
     case Received(x) => print(x)
       if (x.startsWith("/publish")) {
@@ -72,9 +66,8 @@ class Handler extends Actor {
       }
       else if (x.startsWith("topic")) {
         acceptNewPublisher(sender, x)
-//        receiveMessages
       }
-      else if (!x.startsWith(prefix)) {
+      else if (!x.startsWith(prefix) && !x.startsWith("{")) {
         sender ! Write(ByteString(s"Type " + prefix + "help for a list of commands."))
       }
       else if (x.startsWith("/help")) {
@@ -84,18 +77,30 @@ class Handler extends Actor {
           " \n" + prefix + "help" +
           " \n" + prefix + "quit"))
       }
+      else if (x.startsWith("{")) {
+        RedirectMessage(x)
+      }
       else if (x.startsWith("/quit")) {
         println(s"Connection Closed with ${sender()}")
         context stop self
       }
-    case _: ConnectionClosed => println(s"Connection Closed with ${sender()}")
+    case _: ConnectionClosed =>
+      println(s"Connection Closed with ${sender()}")
       context stop self
   }
 
+  def RedirectMessage(x: ByteString): Unit = {
+    for (sub <- getSubscribers) {
+      println(sub.getSubscribedTopics)
+      if (sub.isSubscribedToTopic(Topic)) {
+        sub.getActorRef ! Write(ByteString(x))
+      }
+    }
+  }
   def handlePublisher(publisher: Publisher): Unit = {
     context.parent ! AddPublishers(publisher)
-    for(sub <- getSubscribers){
-      if(sub.isSubscribedToTopic(publisher.getTopic)){
+    for (sub <- getSubscribers) {
+      if (sub.isSubscribedToTopic(publisher.getTopic)) {
         sub.getActorRef ! Write(ByteString(s"\n Shit is getting real" + sub.getSubscribedTopics))
       }
     }
@@ -124,10 +129,11 @@ class Handler extends Actor {
         "\nType " + prefix + "alltopics to see a list of available topics to subscribe to."))
     }
     else if (subscriber.isSubscribedToTopic(cmd(1))) {
-      context.parent ! AddSubscribers(subscriber)
+      sender ! Write(ByteString(s"\n You are already subscribed to that topic."))
     }
     else {
       subscriber.subscribeToTopic(cmd(1))
+      context.parent ! AddSubscribers(subscriber)
       sender ! Write(ByteString(s"\n You have subscribed to topic \"" + cmd(1) + "\""))
     }
   }
@@ -135,6 +141,7 @@ class Handler extends Actor {
   def acceptNewPublisher(sender: ActorRef, x: ByteString): Unit = {
     var topic = x.utf8String
     topic = topic.substring(topic.lastIndexOf(" ") + 1)
+    Topic = topic
     sender ! Write(ByteString(s"All further messages will now be published to the \"" + topic + "\" topic." +
       "\nType /start to begin publishing." +
       "\nType /quit to exit."))

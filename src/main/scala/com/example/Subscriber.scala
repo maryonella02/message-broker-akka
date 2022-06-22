@@ -5,23 +5,25 @@ import akka.actor.ActorRef
 import scala.collection.mutable.ListBuffer
 
 class Subscriber(sender: ActorRef) {
-  private val topics: ListBuffer[String] = ListBuffer[String]()
+  private var topics: List[String] = List[String]()
 
 
-  def getSubscribedTopics: List[String] = topics.toList
+  def getSubscribedTopics: List[String] = topics
 
   def getActorRef: ActorRef = sender
 
   def subscribeToTopic(topic: String): Unit = {
-    topics :+ topic
+    topics = topics :+ topic
   }
 
   def unsubscribeFromTopic(topic: String): Unit = {
-    topics -= topic
+    removeTopic(topic, topics)
   }
 
   def isSubscribedToTopic(topic: String): Boolean = {
     topics.contains(topic)
   }
+
+  def removeTopic(num: String, list: List[String]): List[String] = list diff List(num)
 
 }
