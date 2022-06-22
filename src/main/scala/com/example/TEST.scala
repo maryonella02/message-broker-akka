@@ -64,6 +64,9 @@ class Handler extends Actor {
       else if (x.startsWith("/subscribe")) {
         handleSubscriber(sender(), x)
       }
+      else if (x.startsWith("/unsubscribe")) {
+        handleUnsubscribe(x)
+      }
       else if (x.startsWith("topic")) {
         acceptNewPublisher(sender, x)
       }
@@ -88,6 +91,33 @@ class Handler extends Actor {
       context stop self
   }
 
+  def handleUnsubscribe(x: ByteString): Unit ={
+    val cmd = x.utf8String.split(" ", 2)
+    if (x.utf8String.length < 11) {
+      sender ! Write(ByteString(s"\n That command requires an argument."))
+    }
+    else if (!getAvailableTopics.contains(cmd(1))) {
+      sender ! Write(ByteString(s"\n That is not an available topic to unsubscribe to." ))
+    }
+    else if (!GetSubscriber(sender()).isSubscribedToTopic(cmd(1))) {
+      sender ! Write(ByteString(s"\n You are not subscribed to that topic."))
+    }
+    else {
+      GetSubscriber(sender()).unsubscribeFromTopic(cmd(1))
+      sender ! Write(ByteString(s"\n You have been  unsubscribed from topic \"" + cmd(1) + "\""))
+    }
+  }
+  def GetSubscriber(ref: ActorRef): Subscriber = {
+    var subscriber: Subscriber = null
+    for (sub <- getSubscribers) {
+      if (sub.getActorRef.equals(ref)) {
+        subscriber = sub
+      }
+    }
+    subscriber
+  }
+
+
   def RedirectMessage(x: ByteString): Unit = {
     for (sub <- getSubscribers) {
       println(sub.getSubscribedTopics)
@@ -96,6 +126,7 @@ class Handler extends Actor {
       }
     }
   }
+
   def handlePublisher(publisher: Publisher): Unit = {
     context.parent ! AddPublishers(publisher)
     for (sub <- getSubscribers) {
@@ -110,6 +141,7 @@ class Handler extends Actor {
     val future = context.parent ? GetPublishers
     Await.result(future, timeout.duration).asInstanceOf[List[Publisher]]
   }
+
   def getSubscribers: List[Subscriber] = {
     implicit val timeout: Timeout = Timeout(5 seconds)
     val future = context.parent ? GetSubscribers
