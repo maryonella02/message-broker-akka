@@ -5,14 +5,21 @@ import java.nio.charset.Charset
 import akka.actor._
 import akka.io.Tcp._
 import akka.io._
-import akka.util.ByteString
-import com.example.Server.BindAddress
+import akka.pattern.ask
+import akka.util.{ByteString, Timeout}
+import com.example.Server.{AddPublishers, AddSubscribers, BindAddress, DeletePublishers, DeleteSubscribers, GetPublishers, GetSubscribers}
 
-import scala.collection.mutable.ListBuffer
+import scala.concurrent.Await
+import scala.concurrent.duration.DurationInt
+import scala.language.postfixOps
+
 
 class Server extends Actor {
   implicit val system: ActorSystem = context.system
   val prefix = "/"
+
+  var Publishers: List[Publisher] = List.empty[Publisher]
+  var Subscribers: List[Subscriber] = List.empty[Subscriber]
 
   def receive: Receive = {
     case BindAddress(a, p) =>
@@ -24,17 +31,35 @@ class Server extends Actor {
       sender() ! Write(ByteString(s"Type " + prefix + "help for a list of commands." +
         "\nType " + prefix + "quit to exit."))
     case Bound(a) => println(a.getAddress)
+    case AddPublishers(a) =>
+      Publishers = Publishers :+ a
+    case AddSubscribers(a) =>
+      Subscribers = Subscribers :+ a
+    case DeletePublishers(a) =>
+      removePublisher(a, Publishers)
+    case DeleteSubscribers(a) =>
+      removeSubscriber(a, Subscribers)
+    case GetPublishers =>
+    sender() ! Publishers
+    case GetSubscribers =>
+      sender() ! Subscribers
+    case _ =>
+      println("unrecognized command")
   }
+
+  def removePublisher(num: Publisher, list: List[Publisher]): List[Publisher] = list diff List(num)
+  def removeSubscriber(num: Subscriber, list: List[Subscriber]): List[Subscriber] = list diff List(num)
 }
 
 class Handler extends Actor {
 
-  var Publishers: ListBuffer[Publisher] = ListBuffer()
+  var InternalPublishers: List[Publisher] = List.empty[Publisher]
+  var InternalSubscribers: List[Subscriber] = List.empty[Subscriber]
+
   val prefix = "/"
 
   def receive: Receive = {
     case Received(x) => print(x)
-
       if (x.startsWith("/publish")) {
         sender ! Write(ByteString(s"\n Type 'topic ' and the topic that you would like publish to: "))
       }
@@ -59,13 +84,16 @@ class Handler extends Actor {
         println(s"Connection Closed with ${sender()}")
         context stop self
       }
-    case x: ConnectionClosed => println(s"Connection Closed with ${sender()}")
-
+    case _: ConnectionClosed => println(s"Connection Closed with ${sender()}")
       context stop self
   }
 
   def handlePublisher(publisher: Publisher): Unit = {
-    Publishers :+ publisher
+    context.parent ! AddPublishers(publisher)
+    implicit val timeout: Timeout = Timeout(5 seconds)
+    val future = context.parent ? GetPublishers
+    InternalPublishers = Await.result(future, timeout.duration).asInstanceOf[List[Publisher]]
+    println("After future " + InternalPublishers)
     //to add sending to subscribers
   }
 
@@ -94,20 +122,25 @@ class Handler extends Actor {
   def getAvailableTopics: List[String] = {
     val topics: List[String] = List()
     topics
-
   }
-
-  //  def acceptNewSubscriber(): Unit = {
-  //
-  //  }
 
   def print(x: ByteString): Unit = {
     println(x.decodeString(Charset.defaultCharset()))
   }
 }
+object Handler {
+  //final case class AddPublisher(publisher: Publisher)
+ // case class SetProducers(x: List[Publisher])
+}
 
 object Server {
   case class BindAddress(addr: String, port: Int)
+  case class AddPublishers(a: Publisher)
+  case class AddSubscribers(a: Subscriber)
+  case class DeletePublishers(a: Publisher)
+  case class DeleteSubscribers(a: Subscriber)
+  case object GetPublishers
+  case object GetSubscribers
 }
 
 object Main {

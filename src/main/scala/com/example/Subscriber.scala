@@ -5,7 +5,7 @@ import akka.actor.ActorRef
 import scala.collection.mutable.ListBuffer
 
 class Subscriber(sender: ActorRef) {
-  private val topics: ListBuffer[String] = ListBuffer[String]
+  private val topics: ListBuffer[String] = ListBuffer[String]()
 
 
   def getSubscribedTopics: List[String] = topics.toList
